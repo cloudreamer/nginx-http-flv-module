@@ -1704,6 +1704,7 @@ ngx_http_flv_live_preprocess(ngx_http_request_t *r,
     ngx_uint_t                   i, n;
     ngx_flag_t                   port_match, addr_match;
     unsigned short               sa_family;
+    u_char* ppos = NULL;
 
     ctx = ngx_http_get_module_ctx(r, ngx_http_flv_live_module);
 
@@ -1888,7 +1889,14 @@ ngx_http_flv_live_preprocess(ngx_http_request_t *r,
         ctx->stream.data = (u_char *) "";
         ctx->stream.len = 0;
     }
-
+    
+    // 支持'.flv'的后缀方式，找到并截取, 3 = strlen(".flv")-1
+    ppos = (nginx_strcasestrn(ctx->stream.data,".flv",3));
+    if(ppos != NULL)
+    {
+        ctx->stream.len -=4;
+        ctx->steam.data[ctx->stream.len]='\0';
+    }
     return NGX_OK;
 }
 
