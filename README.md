@@ -17,3 +17,5 @@ enum {
 # flv h265
 参考[ksvc ffmpeg](https://github.com/ksvc/FFmpeg)对flv h265的扩展
 
+# 效果
+实测对海康、大华、宇视的h265码流均有效
