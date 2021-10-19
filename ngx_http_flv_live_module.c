@@ -1891,11 +1891,11 @@ ngx_http_flv_live_preprocess(ngx_http_request_t *r,
     }
     
     // 支持'.flv'的后缀方式，找到并截取, 3 = strlen(".flv")-1
-    ppos = (nginx_strcasestrn(ctx->stream.data,".flv",3));
+    ppos = (ngx_strcasestrn(ctx->stream.data,".flv",3));
     if(ppos != NULL)
     {
         ctx->stream.len -=4;
-        ctx->steam.data[ctx->stream.len]='\0';
+        ctx->stream.data[ctx->stream.len]='\0';
     }
     return NGX_OK;
 }
